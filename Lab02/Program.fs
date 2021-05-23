@@ -19,9 +19,7 @@ let para () =
     printfn "Podaj dwie wartosci: "
     let x = float(Console.ReadLine())
     let y = float(Console.ReadLine())
-    (x, y) 
-    
-    
+    (x, y)  
 
 //zad 2.3
 
@@ -31,57 +29,59 @@ let trojkat a b c =
 
 //zad 2.4
 
-let slowo email =
-    let login = string((email:string).Split("@").[0])
-    let domena = string((email:string).Split('@').[1])
+let email (email:string) =
+    let login = (email:string).Split("@").[0]
+    let domena = (email:string).Split('@').[1]
 
-    printfn "Login: %A" login
-    printfn "Domena: %A" domena
+    (login, domena)
 
 //zad 2.5
 
-let slowo2 email=
-    let login = string((email:string).Split("@").[0])
-    let domena = string((email:string).Split('@').[1])
-    let alias1 = string(domena.Split('.').[0])
-    let alias2 = string(domena.Split('.').[1])
+let sufix (login, domena:string) =
+    let alias1 = domena.Split('.').[0]
+    let alias2 = domena.Split('.').[1]
 
     printf "Email użytkownika: %A" login
 
     match alias1 with
-    |"pcz" -> printf " Należy do domeny PCZ"
-    |_ -> printf " Nie należy do domeny PCZ" 
+    |"pcz" | "PCZ" -> printfn " należy do domeny PCZ"
+    |_ -> printfn " nie należy do domeny PCZ" 
 
 //zad 2.6
 
-
+let Euklides (a1, b1, c1) (a2, b2, c2) = 
+   sqrt((a1 - a2)**2.0 + (b1 - b2)**2.0 + (c1 - c2)**2.0)
 
 //zad 2.7
 
-
+let wnetrze (srodekX, srodekY) (R:float) (punktX, punktY) =
+    let d = sqrt((srodekX - punktX)**2.0 + (srodekY - punktY)**2.0)
+    match d with
+    | k when k  <= R -> printfn "Punkt miesci sie w okregu"
+    | _ -> printfn "Punkt miesci sie poza okregiem"
 
 //zad 2.8
 
-
+//let dodaj (licznikB, mianownikA) (licznikB, mianownikB)
 
 //zad 2.9
 
-type Ulamki2 = {
+type Ulamki = {
     X:float;
     Y:float;
 }
 
-let dodwanie Ulamki2 =
-    Ulamki2.X + Ulamki2.Y
+let dodwanie Ulamki =
+    Ulamki.X + Ulamki.Y
 
-let odejmowanie Ulamki2 =
-    Ulamki2.X - Ulamki2.Y
+let odejmowanie Ulamki =
+    Ulamki.X - Ulamki.Y
 
-let mnozenie Ulamki2 =
-    Ulamki2.X * Ulamki2.Y
+let mnozenie Ulamki =
+    Ulamki.X * Ulamki.Y
 
-let dzielenie Ulamki2 =
-    Ulamki2.X / Ulamki2.Y
+let dzielenie Ulamki =
+    Ulamki.X / Ulamki.Y
 
 //zad 2.10
 
@@ -227,8 +227,6 @@ let pokazRekord osoba =
     printfn "%d" osoba.wiek
     Console.ReadKey() |> ignore
   
-
-
 let rec menu osoba kont =
     if kont then
         printMenu ()
@@ -247,6 +245,9 @@ let main argv =
     
     printfn "Zad 2.1"
     wybor()
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.2"
     let para = para()
@@ -254,31 +255,74 @@ let main argv =
     | (a,b) when a > b -> printfn "Pierwsza liczba jest większa jak druga"
     | (a,b) when b > a -> printfn "Druga liczba jest większa jak pierwsza"
     | (_,_) -> printfn "Obie liczby są równe"
-
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+    
     printfn "Zad 2.3"
-    let wynik = trojkat 3.0 3.0 3.0
-    printfn "Pole trojkata to %f, a jego obwod to %f" (fst wynik) (snd wynik) 
+    let a = 3.0
+    let b = 3.0
+    let c = 3.0
+    let wynik = trojkat a b c
+    printfn "Pole trojkata o bokach %f, %f i %f to %f, a jego obwod to %f" a b c (fst wynik) (snd wynik) 
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.4"
-    let email = string (Console.ReadLine())
-    (slowo email)
+    printfn "Podaj adres email: "
+    let adres = Console.ReadLine()
+    let para = (email adres)
+    printfn "Identyfikator żytkownika to %s" (fst para)
+    printfn "Adres domeny to %s" (snd para)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.5"
-    let adress = string (Console.ReadLine())
-    (slowo2 adress)
+    printfn "Podaj adres email: "
+    let adress = Console.ReadLine()
+    sufix (email adress)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.6"
+    let A = (1.0, 1.0, 1.0)
+    let B = (2.0, 2.0, 2.0)
+    printfn "Odleglosc od siebie punktow %s i %s wynosi %f" (string(A)) (string(B)) (Euklides A B)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+
     printfn "Zad 2.7"
+    let srodek = (2.0, 1.0)
+    let promien = 1.0
+    let punkt = (1.0, 1.0)
+    wnetrze srodek promien punkt
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+
     printfn "Zad 2.8"
+
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+
     printfn "Zad 2.9"
-    let wynik = dodwanie {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
-    let wynik2 = odejmowanie {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
-    let wynik3 = mnozenie {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
-    let wynik4 = dzielenie {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
-    printfn "Wyniki operacji na ułamkach 1: %A" wynik
-    printfn "Wyniki operacji na ułamkach %A" wynik2
-    printfn "Wyniki operacji na ułamkach %A" wynik3
-    printfn "Wyniki operacji na ułamkach %A" wynik4
+    let ulamki = {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
+    let wynik = dodwanie ulamki
+    let wynik2 = odejmowanie ulamki
+    let wynik3 = mnozenie ulamki
+    let wynik4 = dzielenie ulamki
+    printfn "Wyniki dodawania ułamków %A" wynik
+    printfn "Wyniki dodawania ułamków %A" wynik2
+    printfn "Wyniki mnożenia ułamków %A" wynik3
+    printfn "Wyniki dzielenia ułamków %A" wynik4
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.10"
     let wynik = licz ("17/04/2021", "01/01/1990")
@@ -289,6 +333,9 @@ let main argv =
         let sum1 = sum * 7
         let sum2 = wynik - sum1
         printfn "%A" (dzien sum2)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.11"
     printfn "Podaj wartosc A i B: "
@@ -296,8 +343,15 @@ let main argv =
     let b = float (Console.ReadLine ())
     let wynik = dzielenie_zad11 a b
     (wynik_dzielenia wynik)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.12"
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+
     printfn "Zad 2.13"
     printfn "Podaj wartosc A i B: "
     let a = float (Console.ReadLine ())
@@ -307,9 +361,19 @@ let main argv =
     let wynik2 = trojkat_obwod (a, b, c)
     (wynik_trojkata wynik1)
     (wynik_trojkata2 wynik2)
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     printfn "Zad 2.14"
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
+
     printfn "Zad 2.15"
     menu {imie="";nazwisko="";wiek=0} true
+    printfn "\nNaciśnij przycisk by kontynuować"
+    Console.ReadKey() |> ignore
+    Console.Clear()
 
     0 
