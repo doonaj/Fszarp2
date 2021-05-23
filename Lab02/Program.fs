@@ -31,7 +31,12 @@ let trojkat a b c =
 
 //zad 2.4
 
+let slowo email =
+    let login = string((email:string).Split("@").[0])
+    let domena = string((email:string).Split('@').[1])
 
+    printfn "Login: %A" login
+    printfn "Domena: %A" domena
 
 //zad 2.5
 
@@ -93,6 +98,9 @@ let main argv =
     printfn "Pole trojkata to %f, a jego obwod to %f" (fst wynik) (snd wynik) 
 
     printfn "Zad 2.4"
+    let email = string (Console.ReadLine())
+    (slowo email)
+
     printfn "Zad 2.5"
     printfn "Zad 2.6"
     printfn "Zad 2.7"
