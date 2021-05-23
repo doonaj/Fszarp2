@@ -1,5 +1,6 @@
 ﻿
 open System
+
 //zad 2.1
 
 let wybor () =
@@ -14,11 +15,19 @@ let wybor () =
 
 //zad 2.2
 
-
+let para () =
+    printfn "Podaj dwie wartosci: "
+    let x = float(Console.ReadLine())
+    let y = float(Console.ReadLine())
+    (x, y) 
+    
+    
 
 //zad 2.3
 
-
+let trojkat a b c =
+    let p = (a + b + c) / 2.0
+    (sqrt(p * (p - a) * (p - b) * (p - c)), p * 2.0)
 
 //zad 2.4
 
@@ -71,8 +80,16 @@ let main argv =
     
     printfn "Zad 2.1"
     wybor()
+
     printfn "Zad 2.2"
+    let para = para()
+    match para with 
+    | (a,b) when a > b -> printfn "Pierwsza liczba jest większa jak druga"
+    | (a,b) when b > a -> printfn "Druga liczba jest większa jak pierwsza"
+    | (_,_) -> printfn "Obie liczby są równe"
+
     printfn "Zad 2.3"
+
     printfn "Zad 2.4"
     printfn "Zad 2.5"
     printfn "Zad 2.6"
