@@ -89,6 +89,8 @@ let main argv =
     | (_,_) -> printfn "Obie liczby są równe"
 
     printfn "Zad 2.3"
+    let wynik = trojkat 3.0 3.0 3.0
+    printfn "Pole trojkata to %f, a jego obwod to %f" (fst wynik) (snd wynik) 
 
     printfn "Zad 2.4"
     printfn "Zad 2.5"
