@@ -62,26 +62,58 @@ let wnetrze (srodekX, srodekY) (R:float) (punktX, punktY) =
 
 //zad 2.8
 
-//let dodaj (licznikB, mianownikA) (licznikB, mianownikB)
+// do pelnej realizacji brakuje upraszczania wyników (podział licznika i mianownika przez NWD)
+// i zabezpieczenia przed dzieleniem przez zero
+
+let dodaj a b = 
+    let licznik = fst a * snd b + fst b * snd a  
+    let mianownik = snd a * snd b
+    licznik, mianownik
+
+let odejmij a b = 
+    let licznik = fst a * snd b - fst b * snd a  
+    let mianownik = snd a * snd b
+    licznik, mianownik
+
+let pomnoz a b = 
+    let licznik = fst a * fst b 
+    let mianownik = snd a * snd b
+    licznik, mianownik
+
+let podziel a b = 
+    let licznik = fst a * snd b 
+    let mianownik = snd a * fst b
+    licznik, mianownik
 
 //zad 2.9
 
+// do pelnej realizacji brakuje upraszczania wyników (podział licznika i mianownika przez NWD)
+// i zabezpieczenia przed dzieleniem przez zero
+
 type Ulamki = {
-    X:float;
-    Y:float;
+    licznik:int;
+    mianownik:int;
 }
 
-let dodwanie Ulamki =
-    Ulamki.X + Ulamki.Y
+let dodwanie ulamek1 ulamek2 =
+    let licznik = ulamek1.licznik * ulamek2.mianownik + ulamek2.licznik * ulamek1.mianownik
+    let mianownik = ulamek1.mianownik * ulamek2.mianownik
+    {licznik=licznik; mianownik=mianownik}
 
-let odejmowanie Ulamki =
-    Ulamki.X - Ulamki.Y
+let odejmowanie ulamek1 ulamek2 =
+    let licznik = ulamek1.licznik * ulamek2.mianownik - ulamek2.licznik * ulamek1.mianownik
+    let mianownik = ulamek1.mianownik * ulamek2.mianownik
+    {licznik=licznik; mianownik=mianownik}
 
-let mnozenie Ulamki =
-    Ulamki.X * Ulamki.Y
+let mnozenie ulamek1 ulamek2 =
+    let licznik = ulamek1.licznik * ulamek2.licznik
+    let mianownik = ulamek1.mianownik * ulamek2.mianownik
+    {licznik=licznik; mianownik=mianownik}
 
-let dzielenie Ulamki =
-    Ulamki.X / Ulamki.Y
+let dzielenie ulamek1 ulamek2 =
+    let licznik = ulamek1.licznik * ulamek2.mianownik
+    let mianownik = ulamek1.mianownik * ulamek2.lcznik
+    {licznik=licznik; mianownik=mianownik}
 
 //zad 2.10
 
@@ -338,8 +370,9 @@ let main argv =
     Console.Clear()
 
     printfn "Zad 2.11"
-    printfn "Podaj wartosc A i B: "
+    printfn "Dzielenie liczb.\nPodaj dzielną: "
     let a = float (Console.ReadLine ())
+    printfn "Podaj dzielnik: "
     let b = float (Console.ReadLine ())
     let wynik = dzielenie_zad11 a b
     (wynik_dzielenia wynik)
@@ -353,7 +386,7 @@ let main argv =
     Console.Clear()
 
     printfn "Zad 2.13"
-    printfn "Podaj wartosc A i B: "
+    printfn "Podaj długości boków trójkąta: "
     let a = float (Console.ReadLine ())
     let b = float (Console.ReadLine ())
     let c = float (Console.ReadLine ())
