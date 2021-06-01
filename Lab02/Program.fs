@@ -112,7 +112,7 @@ let mnozenie ulamek1 ulamek2 =
 
 let dzielenie ulamek1 ulamek2 =
     let licznik = ulamek1.licznik * ulamek2.mianownik
-    let mianownik = ulamek1.mianownik * ulamek2.lcznik
+    let mianownik = ulamek1.mianownik * ulamek2.licznik
     {licznik=licznik; mianownik=mianownik}
 
 //zad 2.10
@@ -343,7 +343,7 @@ let main argv =
     Console.Clear()
 
     printfn "Zad 2.9"
-    let ulamki = {X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
+    let ulamki = { X = (2.0 / 3.0) ; Y = (3.0 / 5.0)}
     let wynik = dodwanie ulamki
     let wynik2 = odejmowanie ulamki
     let wynik3 = mnozenie ulamki
